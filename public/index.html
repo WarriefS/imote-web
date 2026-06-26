@@ -12,7 +12,6 @@
       --border:    #25252b;
       --border2:   #2e2e36;
       --accent:    #00d4ff;
-      --accent2:   #0099bb;
       --green:     #22c55e;
       --red:       #ef4444;
       --yellow:    #f59e0b;
@@ -20,9 +19,7 @@
       --muted:     #6b6b7a;
       --muted2:    #4a4a58;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -30,10 +27,9 @@
       min-height: 100vh;
       padding: 24px 20px;
     }
-
     .container { max-width: 1160px; margin: 0 auto; }
 
-    /* ── HEADER ── */
+    /* HEADER */
     header {
       display: flex;
       justify-content: space-between;
@@ -52,270 +48,155 @@
       font-size: 20px;
     }
     .header-title h1 {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: #fff;
-      text-transform: uppercase;
+      font-size: 18px; font-weight: 700;
+      letter-spacing: 0.12em; color: #fff; text-transform: uppercase;
     }
     .header-title span {
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-      text-transform: uppercase;
+      font-size: 10px; letter-spacing: 0.15em;
+      color: var(--muted); text-transform: uppercase;
     }
     .conn-badge {
       display: flex; align-items: center; gap: 8px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 8px 16px;
-      border-radius: 999px;
-      font-size: 13px;
-      color: var(--muted);
+      background: var(--card); border: 1px solid var(--border);
+      padding: 8px 16px; border-radius: 999px;
+      font-size: 13px; color: var(--muted);
     }
     .dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--red);
-      transition: background 0.4s;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--red); transition: background 0.4s;
     }
     .dot.live { background: var(--green); box-shadow: 0 0 6px var(--green); }
 
-    /* ── SENSOR SECTION ── */
+    /* SECTION LABEL */
     .section-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 14px;
     }
-    .section-label-left {
-      display: flex; align-items: center; gap: 10px;
-    }
-    .section-bar {
-      width: 3px; height: 16px;
-      background: var(--accent);
-      border-radius: 2px;
-    }
+    .section-label-left { display: flex; align-items: center; gap: 10px; }
+    .section-bar { width: 3px; height: 16px; background: var(--accent); border-radius: 2px; }
     .section-label h2 {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--text);
     }
-    .section-label .interval {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }
+    .section-label .interval { font-size: 11px; color: var(--muted); }
 
+    /* SENSOR GRID */
     .sensor-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
+      gap: 12px; margin-bottom: 24px;
     }
     @media (max-width: 768px) { .sensor-grid { grid-template-columns: repeat(2, 1fr); } }
-
     .sensor-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px 18px 14px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 18px 14px;
     }
     .sensor-card-header {
-      display: flex; align-items: center; gap: 7px;
-      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 7px; margin-bottom: 14px;
     }
-    .sensor-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-    }
+    .sensor-dot { width: 7px; height: 7px; border-radius: 50%; }
     .sensor-card-header span {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
     }
     .sensor-val {
-      font-size: 26px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.02em;
-      margin-bottom: 10px;
+      font-size: 26px; font-weight: 700;
+      color: #fff; letter-spacing: 0.02em; margin-bottom: 10px;
     }
     .sensor-val .unit { font-size: 14px; color: var(--muted); font-weight: 400; margin-left: 2px; }
-    .sensor-bar-track {
-      height: 2px;
-      background: var(--border2);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .sensor-bar-fill {
-      height: 100%;
-      border-radius: 2px;
-      width: 0%;
-      transition: width 0.6s ease;
-    }
-
-    /* sensor accent colors */
+    .sensor-bar-track { height: 2px; background: var(--border2); border-radius: 2px; overflow: hidden; }
+    .sensor-bar-fill { height: 100%; border-radius: 2px; width: 0%; transition: width 0.6s ease; }
     .s-gas   .sensor-dot, .s-gas   .sensor-bar-fill { background: var(--yellow); }
     .s-light .sensor-dot, .s-light .sensor-bar-fill { background: #38bdf8; }
     .s-temp  .sensor-dot, .s-temp  .sensor-bar-fill { background: #f97316; }
     .s-humid .sensor-dot, .s-humid .sensor-bar-fill { background: var(--green); }
 
-    /* ── MAIN GRID (remotes + automation) ── */
+    /* MAIN GRID */
     .main-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 24px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin-bottom: 24px;
     }
     @media (max-width: 700px) { .main-grid { grid-template-columns: 1fr; } }
-
     .panel {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px 20px;
-      min-height: 240px;
-      display: flex;
-      flex-direction: column;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 20px;
+      min-height: 240px; display: flex; flex-direction: column;
     }
     .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 16px;
     }
     .panel-header-left { display: flex; align-items: center; gap: 10px; }
-    .panel-icon { font-size: 16px; }
-    .panel-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-    }
+    .panel-title { font-size: 14px; font-weight: 600; color: var(--text); }
     .count-badge {
-      background: var(--accent);
-      color: #000;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 999px;
+      background: var(--accent); color: #000;
+      font-size: 10px; font-weight: 700;
+      padding: 2px 7px; border-radius: 999px;
     }
-    .panel-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    /* empty state */
+    .panel-body { flex: 1; display: flex; flex-direction: column; }
     .empty-state {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 20px 0;
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px; padding: 20px 0;
     }
     .empty-state .empty-icon { font-size: 32px; opacity: 0.4; }
     .empty-state p { font-size: 13px; color: var(--muted); text-align: center; }
     .empty-state p.sub { font-size: 11px; color: var(--muted2); }
 
-    /* buttons */
-    button {
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 600;
-      border: none;
-      transition: opacity 0.2s, transform 0.1s;
-    }
+    /* BUTTONS */
+    button { cursor: pointer; font-family: inherit; font-weight: 600; border: none; transition: opacity 0.2s, transform 0.1s; }
     button:hover  { opacity: 0.85; }
     button:active { transform: scale(0.97); }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #000;
-      font-size: 12px;
-      padding: 7px 14px;
-      border-radius: 8px;
-    }
-    .btn-danger  { background: var(--red);    color: #fff; font-size: 12px; padding: 5px 10px; border-radius: 6px; }
+    .btn-primary { background: var(--accent); color: #000; font-size: 12px; padding: 7px 14px; border-radius: 8px; }
+    .btn-danger  { background: var(--red); color: #fff; font-size: 12px; padding: 5px 10px; border-radius: 6px; }
     .btn-ghost   { background: transparent; border: 1px dashed var(--border2); color: var(--muted); font-size: 12px; padding: 6px 12px; border-radius: 6px; }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
     .btn-cmd     { background: #1e1e26; border: 1px solid var(--border2); color: var(--text); font-size: 12px; padding: 6px 12px; border-radius: 6px; }
     .btn-cmd:hover { background: #25252f; border-color: var(--accent); opacity: 1; }
 
-    /* device card inside panel */
+    /* DEVICE ITEMS */
     .device-item { margin-bottom: 14px; }
     .device-item-header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 8px;
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 8px;
     }
     .device-name { font-size: 13px; font-weight: 600; }
     .cmd-grid { display: flex; flex-wrap: wrap; gap: 6px; }
 
-    /* rule card inside panel */
+    /* RULE ITEMS */
     .rule-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 14px;
-      margin-bottom: 8px;
-      gap: 10px;
+      display: flex; justify-content: space-between;
+      align-items: center; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 10px 14px; margin-bottom: 8px; gap: 10px;
     }
     .rule-item .rule-text { font-size: 12px; font-weight: 600; }
     .rule-item .rule-sub  { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-    /* ── LOG ── */
+    /* LOG */
     .log-panel {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px 20px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px 20px;
     }
     .log-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 12px;
     }
     .log-header-left { display: flex; align-items: center; gap: 8px; }
-    .log-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--muted2);
-    }
+    .log-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted2); }
     .log-dot.active { background: var(--green); box-shadow: 0 0 5px var(--green); }
     .log-title { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
     .log-badge {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 4px;
-      letter-spacing: 0.08em;
+      background: transparent; border: 1px solid var(--accent);
+      color: var(--accent); font-size: 10px; font-weight: 700;
+      padding: 3px 10px; border-radius: 4px; letter-spacing: 0.08em;
     }
     .log-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 14px;
-      height: 140px;
-      overflow-y: auto;
-      font-family: 'Courier New', monospace;
-      font-size: 11px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 14px; height: 140px;
+      overflow-y: auto; font-family: 'Courier New', monospace; font-size: 11px;
     }
     .log-box::-webkit-scrollbar { width: 4px; }
-    .log-box::-webkit-scrollbar-track { background: transparent; }
     .log-box::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
     .log-entry { margin-bottom: 4px; display: flex; gap: 8px; }
     .log-time  { color: var(--muted2); flex-shrink: 0; }
@@ -324,49 +205,47 @@
     .log-msg.ok     { color: var(--green); }
     .log-msg.accent { color: var(--accent); }
 
-    /* ── MODALS ── */
+    /* MODALS */
     .modal-overlay {
       display: none; position: fixed; inset: 0;
       background: rgba(0,0,0,0.8);
-      align-items: center; justify-content: center;
-      z-index: 100;
+      align-items: center; justify-content: center; z-index: 100;
     }
     .modal-overlay.open { display: flex; }
     .modal {
-      background: var(--card);
-      border: 1px solid var(--border2);
-      border-radius: 16px;
-      padding: 26px 24px;
+      background: var(--card); border: 1px solid var(--border2);
+      border-radius: 16px; padding: 26px 24px;
       width: 100%; max-width: 400px;
     }
     .modal h3 { font-size: 16px; font-weight: 700; margin-bottom: 20px; }
     .form-group { margin-bottom: 14px; }
-    .form-group label { display: block; font-size: 11px; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .form-group label {
+      display: block; font-size: 11px; color: var(--muted);
+      margin-bottom: 6px; letter-spacing: 0.06em; text-transform: uppercase;
+    }
     .form-group input, .form-group select {
       width: 100%; padding: 10px 12px;
       background: var(--surface); border: 1px solid var(--border2);
-      color: var(--text); border-radius: 8px; font-size: 13px;
-      font-family: inherit;
+      color: var(--text); border-radius: 8px; font-size: 13px; font-family: inherit;
     }
     .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent); }
     .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 6px; }
 
-    /* learn modal */
+    /* LEARN MODAL */
     .learn-center { text-align: center; }
     .learn-ring {
       width: 72px; height: 72px; border-radius: 50%;
       border: 2px solid var(--accent);
       background: rgba(0,212,255,0.08);
       display: flex; align-items: center; justify-content: center;
-      font-size: 28px;
-      margin: 16px auto 14px;
+      font-size: 28px; margin: 16px auto 14px;
       animation: ring-pulse 1.5s ease-in-out infinite;
     }
     @keyframes ring-pulse {
       0%,100% { box-shadow: 0 0 0 0 rgba(0,212,255,0.35); }
       50%      { box-shadow: 0 0 0 14px rgba(0,212,255,0); }
     }
-    .learn-desc  { font-size: 12px; color: var(--muted); margin-bottom: 8px; line-height: 1.6; }
+    .learn-desc { font-size: 12px; color: var(--muted); margin-bottom: 8px; line-height: 1.6; }
     #learnStatusText { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 18px; letter-spacing: 0.08em; }
   </style>
 </head>
@@ -388,7 +267,7 @@
     </div>
   </header>
 
-  <!-- SENSOR FEED -->
+  <!-- SENSORS -->
   <div class="section-label">
     <div class="section-label-left">
       <div class="section-bar"></div>
@@ -398,34 +277,22 @@
   </div>
   <div class="sensor-grid">
     <div class="sensor-card s-gas">
-      <div class="sensor-card-header">
-        <div class="sensor-dot"></div>
-        <span>MQ-2 Gas Level</span>
-      </div>
+      <div class="sensor-card-header"><div class="sensor-dot"></div><span>MQ-2 Gas Level</span></div>
       <div class="sensor-val" id="valGas">---</div>
       <div class="sensor-bar-track"><div class="sensor-bar-fill" id="barGas"></div></div>
     </div>
     <div class="sensor-card s-light">
-      <div class="sensor-card-header">
-        <div class="sensor-dot"></div>
-        <span>LDR Ambient Light</span>
-      </div>
+      <div class="sensor-card-header"><div class="sensor-dot"></div><span>LDR Ambient Light</span></div>
       <div class="sensor-val" id="valLight">---</div>
       <div class="sensor-bar-track"><div class="sensor-bar-fill" id="barLight"></div></div>
     </div>
     <div class="sensor-card s-temp">
-      <div class="sensor-card-header">
-        <div class="sensor-dot"></div>
-        <span>DHT11 Temperature</span>
-      </div>
+      <div class="sensor-card-header"><div class="sensor-dot"></div><span>DHT11 Temperature</span></div>
       <div class="sensor-val" id="valTemp">---<span class="unit">°C</span></div>
       <div class="sensor-bar-track"><div class="sensor-bar-fill" id="barTemp"></div></div>
     </div>
     <div class="sensor-card s-humid">
-      <div class="sensor-card-header">
-        <div class="sensor-dot"></div>
-        <span>DHT11 Humidity</span>
-      </div>
+      <div class="sensor-card-header"><div class="sensor-dot"></div><span>DHT11 Humidity</span></div>
       <div class="sensor-val" id="valHumid">---<span class="unit">%</span></div>
       <div class="sensor-bar-track"><div class="sensor-bar-fill" id="barHumid"></div></div>
     </div>
@@ -433,12 +300,10 @@
 
   <!-- MAIN GRID -->
   <div class="main-grid">
-
-    <!-- IR REMOTES PANEL -->
     <div class="panel">
       <div class="panel-header">
         <div class="panel-header-left">
-          <span class="panel-icon">📡</span>
+          <span>📡</span>
           <span class="panel-title">IR Remotes</span>
           <span class="count-badge" id="devCount">0</span>
         </div>
@@ -452,12 +317,10 @@
         </div>
       </div>
     </div>
-
-    <!-- AUTOMATION PANEL -->
     <div class="panel">
       <div class="panel-header">
         <div class="panel-header-left">
-          <span class="panel-icon">⚙️</span>
+          <span>⚙️</span>
           <span class="panel-title">Automation</span>
           <span class="count-badge" id="ruleCount">0</span>
         </div>
@@ -471,10 +334,9 @@
         </div>
       </div>
     </div>
-
   </div>
 
-  <!-- SYSTEM LOG -->
+  <!-- LOG -->
   <div class="log-panel">
     <div class="log-header">
       <div class="log-header-left">
@@ -489,8 +351,6 @@
 </div>
 
 <!-- MODALS -->
-
-<!-- Add Device -->
 <div class="modal-overlay" id="devModal">
   <div class="modal">
     <h3>📱 New Remote Device</h3>
@@ -505,7 +365,6 @@
   </div>
 </div>
 
-<!-- Add Rule -->
 <div class="modal-overlay" id="ruleModal">
   <div class="modal">
     <h3>⚙️ New Automation Rule</h3>
@@ -540,7 +399,6 @@
   </div>
 </div>
 
-<!-- IR Learning -->
 <div class="modal-overlay" id="learnModal">
   <div class="modal">
     <div class="learn-center">
@@ -553,18 +411,42 @@
   </div>
 </div>
 
-<script>
-  // ── STATE ──────────────────────────────────────
-  let currentDevices = [];
-  let learnPollTimer = null;
-  let telemetryAlive = false;
-  let telemetryWatchdog = null;
+<!-- FIREBASE SDK -->
+<script type="module">
+  import { initializeApp }                          from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getDatabase, ref, set, onValue, get }   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+
+  // ─────────────────────────────────────────────
+  //  🔥 PASTE YOUR FIREBASE CONFIG HERE
+  // ─────────────────────────────────────────────
+  const firebaseConfig = {
+    apiKey: "AIzaSyBWrBulOSMO4spqKlhnQJo2Xzj_L0TW5jw",
+    authDomain: "i-mote-claude.firebaseapp.com",
+    databaseURL: "https://i-mote-claude-default-rtdb.firebaseio.com",
+    projectId: "i-mote-claude",
+    storageBucket: "i-mote-claude.firebasestorage.app",
+    messagingSenderId: "681247324139",
+    appId: "1:681247324139:web:022275ad895b1bfeb28bae",
+    measurementId: "G-F2JJJBG9TG"
+  };
+
+  const DEVICE_ID = 'imote_01';
   const SENSOR_NAMES = ['MQ-2 Gas', 'LDR Light', 'DHT Temp', 'DHT Humidity'];
 
-  // ── LOGGING ────────────────────────────────────
+  // ── INIT ──────────────────────────────────────
+  const app      = initializeApp(firebaseConfig);
+  const db       = getDatabase(app);
+  const basePath = `devices/${DEVICE_ID}`;
+
+  let currentDevices  = [];
+  let telemetryAlive  = false;
+  let telemetryWatch  = null;
+  let learnUnsub      = null;
+
+  // ── LOGGING ───────────────────────────────────
   function log(msg, type = '') {
-    const box  = document.getElementById('logBox');
-    const time = new Date().toLocaleTimeString();
+    const box   = document.getElementById('logBox');
+    const time  = new Date().toLocaleTimeString();
     const entry = document.createElement('div');
     entry.className = 'log-entry';
     entry.innerHTML = `<span class="log-time">[${time}]</span><span class="log-msg ${type}">${msg}</span>`;
@@ -572,121 +454,82 @@
     box.scrollTop = box.scrollHeight;
   }
 
-  // ── MODAL ──────────────────────────────────────
-  function openModal(id)  { document.getElementById(id).classList.add('open'); }
-  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+  // ── MODAL ─────────────────────────────────────
+  window.openModal  = id => document.getElementById(id).classList.add('open');
+  window.closeModal = id => document.getElementById(id).classList.remove('open');
 
-  // ── CONNECTION STATE ───────────────────────────
-  // Connected = SSE open AND telemetry recently received from ESP32
+  // ── CONNECTION STATE ──────────────────────────
   function setConnected(state) {
-    const dot  = document.getElementById('dot');
-    const text = document.getElementById('connText');
-    const logDot = document.getElementById('logDot');
-    const badge  = document.getElementById('streamBadge');
-    if (state) {
-      dot.classList.add('live');
-      text.textContent = 'Connected';
-      logDot.classList.add('active');
-      badge.textContent = 'STREAM ACTIVE';
-    } else {
-      dot.classList.remove('live');
-      text.textContent = 'Reconnecting...';
-      logDot.classList.remove('active');
-      badge.textContent = 'STREAM INACTIVE';
-    }
+    document.getElementById('dot').classList.toggle('live', state);
+    document.getElementById('connText').textContent = state ? 'Connected' : 'Reconnecting...';
+    document.getElementById('logDot').classList.toggle('active', state);
+    document.getElementById('streamBadge').textContent = state ? 'STREAM ACTIVE' : 'STREAM INACTIVE';
   }
 
-  // Watchdog: if no telemetry received in 5 seconds, mark disconnected
-  function resetTelemetryWatchdog() {
-    if (telemetryWatchdog) clearTimeout(telemetryWatchdog);
-    telemetryWatchdog = setTimeout(() => {
-      if (telemetryAlive) {
-        telemetryAlive = false;
-        setConnected(false);
-        log('No telemetry from ESP32. Device may be offline.', 'err');
-      }
+  function resetWatchdog() {
+    if (telemetryWatch) clearTimeout(telemetryWatch);
+    telemetryWatch = setTimeout(() => {
+      telemetryAlive = false;
+      setConnected(false);
+      log('No telemetry from ESP32. Device may be offline.', 'err');
     }, 5000);
   }
 
-  // ── SSE ────────────────────────────────────────
-  function initSSE() {
-    const es = new EventSource('/stream');
-
-    es.onopen = () => {
-      log('Stream connected. Waiting for ESP32 telemetry...', 'ok');
-      // Don't mark as connected yet — wait for actual telemetry
-    };
-
-    es.onerror = () => {
-      setConnected(false);
-      log('Stream error. Attempting reconnect in 2s...', 'err');
-    };
-
-    es.addEventListener('telemetry', e => {
-      const d = JSON.parse(e.data);
-
-      // Mark as connected only when real data arrives
-      if (!telemetryAlive) {
-        telemetryAlive = true;
-        setConnected(true);
-        log('ESP32 telemetry received. Device is online.', 'ok');
-      }
-      resetTelemetryWatchdog();
-
-      // Update sensor values
-      const gas   = d.gas   ?? 0;
-      const light = d.light ?? 0;
-      const temp  = d.temp  ?? 0;
-      const humid = d.humid ?? 0;
-
-      document.getElementById('valGas').textContent   = gas;
-      document.getElementById('valLight').textContent = light < 3000 ? 'Bright' : 'Dark';
-      document.getElementById('valTemp').innerHTML    = `${parseFloat(temp).toFixed(1)}<span class="unit">°C</span>`;
-      document.getElementById('valHumid').innerHTML   = `${parseFloat(humid).toFixed(1)}<span class="unit">%</span>`;
-
-      // Update progress bars (normalized estimates)
-      document.getElementById('barGas').style.width   = Math.min((gas / 4095) * 100, 100) + '%';
-      document.getElementById('barLight').style.width = Math.min((light / 4095) * 100, 100) + '%';
-      document.getElementById('barTemp').style.width  = Math.min((temp / 60) * 100, 100) + '%';
-      document.getElementById('barHumid').style.width = Math.min(humid, 100) + '%';
-    });
-
-    es.addEventListener('config', e => {
-      const data = JSON.parse(e.data);
-      applyConfig(data);
-    });
-
-    es.addEventListener('learn_status', e => {
-      const { status } = JSON.parse(e.data);
-      handleLearnStatus(status);
-    });
-
-    es.addEventListener('log', e => {
-      const { text } = JSON.parse(e.data);
-      if (text) log(text, 'accent');
-    });
+  // ── SEND COMMAND TO ESP32 VIA FIREBASE ────────
+  async function sendCommand(payload) {
+    await set(ref(db, `${basePath}/command`), payload);
   }
 
-  // ── CONFIG ─────────────────────────────────────
-  async function fetchConfig() {
-    try {
-      const res  = await fetch('/api/config');
-      const data = await res.json();
-      applyConfig(data);
-    } catch (err) {
-      log('Failed to load config: ' + err.message, 'err');
+  // ── TELEMETRY LISTENER ────────────────────────
+  onValue(ref(db, `${basePath}/telemetry`), snap => {
+    const d = snap.val();
+    if (!d) return;
+
+    if (!telemetryAlive) {
+      telemetryAlive = true;
+      setConnected(true);
+      log('ESP32 telemetry received. Device is online.', 'ok');
     }
-  }
+    resetWatchdog();
 
+    const gas   = d.gas   ?? 0;
+    const light = d.light ?? 0;
+    const temp  = d.temp  ?? 0;
+    const humid = d.humid ?? 0;
+
+    document.getElementById('valGas').textContent   = gas;
+    document.getElementById('valLight').textContent = light < 3000 ? 'Bright' : 'Dark';
+    document.getElementById('valTemp').innerHTML    = `${parseFloat(temp).toFixed(1)}<span class="unit">°C</span>`;
+    document.getElementById('valHumid').innerHTML   = `${parseFloat(humid).toFixed(1)}<span class="unit">%</span>`;
+
+    document.getElementById('barGas').style.width   = Math.min((gas / 4095) * 100, 100) + '%';
+    document.getElementById('barLight').style.width = Math.min((light / 4095) * 100, 100) + '%';
+    document.getElementById('barTemp').style.width  = Math.min((temp / 60) * 100, 100) + '%';
+    document.getElementById('barHumid').style.width = Math.min(humid, 100) + '%';
+  });
+
+  // ── CONFIG LISTENER ───────────────────────────
+  onValue(ref(db, `${basePath}/config`), snap => {
+    const data = snap.val();
+    if (!data) return;
+    applyConfig(data);
+  });
+
+  // ── AUTOMATION LOG LISTENER ───────────────────
+  onValue(ref(db, `${basePath}/log`), snap => {
+    const text = snap.val();
+    if (text) log(text, 'accent');
+  });
+
+  // ── APPLY CONFIG ──────────────────────────────
   function applyConfig(data) {
     const deviceCount = data.deviceCount || 0;
     const devices = [];
     for (let i = 0; i < deviceCount; i++) {
       const d = data.devices?.[i];
       if (!d) continue;
-      const cmdCount = d.cmdCount || 0;
       const commands = [];
-      for (let k = 0; k < cmdCount; k++) commands.push(d.commands?.[k] || '');
+      for (let k = 0; k < (d.cmdCount || 0); k++) commands.push(d.commands?.[k] || '');
       devices.push({ name: d.name, commands });
     }
     const rules = [];
@@ -709,16 +552,11 @@
     document.getElementById('ruleCount').textContent = rules.filter(r => r.active).length;
   }
 
-  // ── RENDER DEVICES ─────────────────────────────
+  // ── RENDER DEVICES ────────────────────────────
   function renderDevices(devs) {
     const container = document.getElementById('devicesContainer');
     if (!devs.length) {
-      container.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">🎮</div>
-          <p>No remotes yet.</p>
-          <p class="sub">Add a device to begin capturing IR signals.</p>
-        </div>`;
+      container.innerHTML = `<div class="empty-state"><div class="empty-icon">🎮</div><p>No remotes yet.</p><p class="sub">Add a device to begin capturing IR signals.</p></div>`;
       return;
     }
     container.innerHTML = devs.map((d, dIdx) => `
@@ -728,28 +566,19 @@
           <button class="btn-danger" onclick="deleteDevice(${dIdx})">Delete</button>
         </div>
         <div class="cmd-grid">
-          ${d.commands.map((c, cIdx) => `
-            <button class="btn-cmd" onclick="blastIR(${dIdx},${cIdx})">⚡ ${c}</button>
-          `).join('')}
-          ${d.commands.length < 6 ? `
-            <button class="btn-ghost" onclick="startIRLearn(${dIdx})">+ Add Key</button>
-          ` : ''}
+          ${d.commands.map((c, cIdx) => `<button class="btn-cmd" onclick="blastIR(${dIdx},${cIdx})">⚡ ${c}</button>`).join('')}
+          ${d.commands.length < 6 ? `<button class="btn-ghost" onclick="startIRLearn(${dIdx})">+ Add Key</button>` : ''}
         </div>
       </div>
     `).join('');
   }
 
-  // ── RENDER RULES ───────────────────────────────
+  // ── RENDER RULES ──────────────────────────────
   function renderRules(rules, devs) {
     const container = document.getElementById('rulesContainer');
     const active = rules.filter(r => r.active);
     if (!active.length) {
-      container.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">🤖</div>
-          <p>No automation rules.</p>
-          <p class="sub">Rules fire IR commands when sensor thresholds are crossed.</p>
-        </div>`;
+      container.innerHTML = `<div class="empty-state"><div class="empty-icon">🤖</div><p>No automation rules.</p><p class="sub">Rules fire IR commands when sensor thresholds are crossed.</p></div>`;
       return;
     }
     container.innerHTML = rules.map((r, idx) => {
@@ -785,92 +614,88 @@
     }
   }
 
-  // ── ACTIONS ────────────────────────────────────
-  async function submitNewDevice() {
+  // ── ACTIONS ───────────────────────────────────
+  window.blastIR = async (devIdx, cmdIdx) => {
+    await sendCommand({ action: 'blast', devIdx, cmdIdx });
+    log(`⚡ Blast: ${currentDevices[devIdx]?.name} ➔ ${currentDevices[devIdx]?.commands[cmdIdx]}`, 'accent');
+  };
+
+  window.submitNewDevice = async () => {
     const name = document.getElementById('newDevName').value.trim();
     if (!name) return;
-    await fetch('/api/add_device', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name }) });
+    await sendCommand({ action: 'add_device', name });
     closeModal('devModal');
     document.getElementById('newDevName').value = '';
     log(`Add device "${name}" sent.`);
-  }
+  };
 
-  async function deleteDevice(idx) {
+  window.deleteDevice = async idx => {
     if (!confirm(`Delete "${currentDevices[idx]?.name}"?`)) return;
-    await fetch('/api/del_device', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ idx }) });
+    await sendCommand({ action: 'del_device', idx });
     log(`Delete device [${idx}] sent.`);
-  }
+  };
 
-  async function blastIR(devIdx, cmdIdx) {
-    await fetch('/api/blast', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ devIdx, cmdIdx }) });
-    log(`⚡ Blast: ${currentDevices[devIdx]?.name} ➔ ${currentDevices[devIdx]?.commands[cmdIdx]}`, 'accent');
-  }
-
-  async function startIRLearn(dIdx) {
+  window.startIRLearn = async dIdx => {
     const cmdName = prompt('Enter key label (e.g. POWER, VOL_UP):');
     if (!cmdName) return;
-    await fetch('/api/start_learn', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ devIdx: dIdx, cmdName }) });
+    await set(ref(db, `${basePath}/learn_status`), 'idle');
+    await sendCommand({ action: 'start_learn', devIdx: dIdx, cmdName });
     openModal('learnModal');
     document.getElementById('learnStatusText').textContent = 'WAITING FOR SIGNAL...';
     log(`IR Learning started for "${cmdName}"`);
-    if (learnPollTimer) clearInterval(learnPollTimer);
-    learnPollTimer = setInterval(async () => {
-      const res = await fetch('/api/learn_status');
-      const { status } = await res.json();
-      handleLearnStatus(status);
-    }, 1500);
-  }
 
-  async function cancelLearning() {
-    await fetch('/api/cancel_learn', { method:'POST' });
+    // Listen for learn status changes
+    if (learnUnsub) learnUnsub();
+    learnUnsub = onValue(ref(db, `${basePath}/learn_status`), snap => {
+      handleLearnStatus(snap.val());
+    });
+  };
+
+  window.cancelLearning = async () => {
+    await sendCommand({ action: 'cancel_learn' });
     closeModal('learnModal');
-    stopLearnPoll();
+    if (learnUnsub) { learnUnsub(); learnUnsub = null; }
     log('IR learning cancelled.', 'err');
-  }
-
-  function stopLearnPoll() {
-    if (learnPollTimer) { clearInterval(learnPollTimer); learnPollTimer = null; }
-  }
+  };
 
   function handleLearnStatus(status) {
     if (status === 'success') {
-      stopLearnPoll(); closeModal('learnModal');
+      if (learnUnsub) { learnUnsub(); learnUnsub = null; }
+      closeModal('learnModal');
       log('✅ IR signal captured successfully!', 'ok');
     } else if (status === 'timeout') {
-      stopLearnPoll(); closeModal('learnModal');
+      if (learnUnsub) { learnUnsub(); learnUnsub = null; }
+      closeModal('learnModal');
       log('⏰ IR capture timed out.', 'err');
       alert('IR capture timed out. Try again.');
     } else if (status === 'cancelled') {
-      stopLearnPoll(); closeModal('learnModal');
+      if (learnUnsub) { learnUnsub(); learnUnsub = null; }
+      closeModal('learnModal');
     } else if (status === 'listening') {
       document.getElementById('learnStatusText').textContent = 'LISTENING — Press your remote button now...';
     }
   }
 
-  async function submitNewRule() {
+  window.submitNewRule = async () => {
     const sensor    = parseInt(document.getElementById('ruleSensor').value);
     const op        = parseInt(document.getElementById('ruleOp').value);
     const threshold = parseFloat(document.getElementById('ruleThreshold').value);
     const target    = document.getElementById('ruleTarget').value;
     if (!target || isNaN(threshold)) { alert('Please fill all fields.'); return; }
     const [devIdx, cmdIdx] = target.split('_').map(Number);
-    await fetch('/api/add_rule', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ sensor, op, threshold, devIdx, cmdIdx }) });
+    await sendCommand({ action: 'add_rule', sensor, op, threshold, devIdx, cmdIdx });
     closeModal('ruleModal');
     document.getElementById('ruleThreshold').value = '';
-    log(`Rule deployed: ${SENSOR_NAMES[sensor]} ${op===0?'<':'>'} ${threshold}`, 'accent');
-  }
+    log(`Rule deployed: ${SENSOR_NAMES[sensor]} ${op === 0 ? '<' : '>'} ${threshold}`, 'accent');
+  };
 
-  async function deleteRule(idx) {
-    await fetch('/api/del_rule', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ idx }) });
-    log(`Rule #${idx+1} removed.`);
-  }
+  window.deleteRule = async idx => {
+    await sendCommand({ action: 'del_rule', idx });
+    log(`Rule #${idx + 1} removed.`);
+  };
 
-  // ── INIT ───────────────────────────────────────
-  window.addEventListener('load', () => {
-    log('System initialized. Connecting to Firebase...');
-    fetchConfig();
-    initSSE();
-  });
+  // ── INIT LOG ──────────────────────────────────
+  log('System initialized. Connecting to Firebase...');
 </script>
 </body>
 </html>
