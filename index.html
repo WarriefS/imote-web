@@ -106,10 +106,23 @@
     .sensor-val .unit { font-size: 14px; color: var(--muted); font-weight: 400; margin-left: 2px; }
     .sensor-bar-track { height: 2px; background: var(--border2); border-radius: 2px; overflow: hidden; }
     .sensor-bar-fill { height: 100%; border-radius: 2px; width: 0%; transition: width 0.6s ease; }
-    .s-gas   .sensor-dot, .s-gas   .sensor-bar-fill { background: var(--yellow); }
-    .s-light .sensor-dot, .s-light .sensor-bar-fill { background: #38bdf8; }
-    .s-temp  .sensor-dot, .s-temp  .sensor-bar-fill { background: #f97316; }
-    .s-humid .sensor-dot, .s-humid .sensor-bar-fill { background: var(--green); }
+    .s-gas   .sensor-dot { background: var(--yellow); }
+    .s-light .sensor-dot { background: #3b82f6; }
+    .s-temp  .sensor-dot { background: #f97316; }
+    .s-humid .sensor-dot { background: #38bdf8; }
+
+    .s-gas   .sensor-bar-fill {
+      background: linear-gradient(to right, #22c55e, #eab308, #f97316, #ef4444);
+    }
+    .s-light .sensor-bar-fill {
+      background: linear-gradient(to right, #ffffff, #93c5fd, #3b82f6, #1e3a5f);
+    }
+    .s-temp  .sensor-bar-fill {
+      background: linear-gradient(to right, #67e8f9, #86efac, #fbbf24, #f97316, #ef4444);
+    }
+    .s-humid .sensor-bar-fill {
+      background: linear-gradient(to right, #fde68a, #6ee7b7, #38bdf8, #1d4ed8);
+    }
 
     /* MAIN GRID */
     .main-grid {
@@ -257,7 +270,7 @@
     <div class="header-left">
       <div class="logo-box">⚡</div>
       <div class="header-title">
-        <h1>I-Mote</h1>
+        <h1>I-Motegit </h1>
         <span>Environmental Monitor &amp; IR Controller</span>
       </div>
     </div>
@@ -284,8 +297,9 @@
     <div class="sensor-card s-light">
       <div class="sensor-card-header"><div class="sensor-dot"></div><span>LDR Ambient Light</span></div>
       <div class="sensor-val" id="valLight">---</div>
+      <div class="sensor-val-sub" id="valLightLabel" style="font-size:12px; color:var(--muted); margin-top:-6px; margin-bottom:8px;"></div>
       <div class="sensor-bar-track"><div class="sensor-bar-fill" id="barLight"></div></div>
-    </div>
+   </div>  
     <div class="sensor-card s-temp">
       <div class="sensor-card-header"><div class="sensor-dot"></div><span>DHT11 Temperature</span></div>
       <div class="sensor-val" id="valTemp">---<span class="unit">°C</span></div>
@@ -497,14 +511,25 @@
     const temp  = d.temp  ?? 0;
     const humid = d.humid ?? 0;
 
-    document.getElementById('valGas').textContent   = gas;
-    document.getElementById('valLight').textContent = light < 3000 ? 'Bright' : 'Dark';
-    document.getElementById('valTemp').innerHTML    = `${parseFloat(temp).toFixed(1)}<span class="unit">°C</span>`;
-    document.getElementById('valHumid').innerHTML   = `${parseFloat(humid).toFixed(1)}<span class="unit">%</span>`;
+    // MQ-2 Gas
+    document.getElementById('valGas').textContent = gas;
+    document.getElementById('barGas').style.width = Math.min((gas / 4095) * 100, 100) + '%';
 
-    document.getElementById('barGas').style.width   = Math.min((gas / 4095) * 100, 100) + '%';
+    // LDR Light — raw value + label
+    document.getElementById('valLight').textContent = light;
+    let lightLabel = '';
+    if      (light <= 1000) lightLabel = '☀️ Bright';
+    else if (light <= 2500) lightLabel = '🌤️ Dim';
+    else                    lightLabel = '🌑 Dark';
+    document.getElementById('valLightLabel').textContent = lightLabel;
     document.getElementById('barLight').style.width = Math.min((light / 4095) * 100, 100) + '%';
-    document.getElementById('barTemp').style.width  = Math.min((temp / 60) * 100, 100) + '%';
+
+    // Temperature
+    document.getElementById('valTemp').innerHTML = `${parseFloat(temp).toFixed(1)}<span class="unit">°C</span>`;
+    document.getElementById('barTemp').style.width = Math.min((temp / 60) * 100, 100) + '%';
+
+    // Humidity
+    document.getElementById('valHumid').innerHTML = `${parseFloat(humid).toFixed(1)}<span class="unit">%</span>`;
     document.getElementById('barHumid').style.width = Math.min(humid, 100) + '%';
   });
 
