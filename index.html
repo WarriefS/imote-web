@@ -111,18 +111,7 @@
     .s-temp  .sensor-dot { background: #f97316; }
     .s-humid .sensor-dot { background: #38bdf8; }
 
-    .s-gas   .sensor-bar-fill {
-      background: linear-gradient(to right, #22c55e, #eab308, #f97316, #ef4444);
-    }
-    .s-light .sensor-bar-fill {
-      background: linear-gradient(to right, #ffffff, #93c5fd, #3b82f6, #1e3a5f);
-    }
-    .s-temp  .sensor-bar-fill {
-      background: linear-gradient(to right, #67e8f9, #86efac, #fbbf24, #f97316, #ef4444);
-    }
-    .s-humid .sensor-bar-fill {
-      background: linear-gradient(to right, #fde68a, #6ee7b7, #38bdf8, #1d4ed8);
-    }
+    .sensor-bar-fill { transition: width 0.6s ease, background-color 0.6s ease; }
 
     /* MAIN GRID */
     .main-grid {
@@ -270,7 +259,7 @@
     <div class="header-left">
       <div class="logo-box">⚡</div>
       <div class="header-title">
-        <h1>I-Motekuy </h1>
+        <h1>I-Mote </h1>
         <span>Environmental Monitor &amp; IR Controller</span>
       </div>
     </div>
@@ -506,31 +495,65 @@
     }
     resetWatchdog();
 
-    const gas   = d.gas   ?? 0;
-    const light = d.light ?? 0;
-    const temp  = d.temp  ?? 0;
-    const humid = d.humid ?? 0;
+  // ── COLOR HELPERS ─────────────────────────────
+  function interpolateColor(colors, pct) {
+    // pct = 0.0 to 1.0
+    const slots = colors.length - 1;
+    const scaled = pct * slots;
+    const idx    = Math.min(Math.floor(scaled), slots - 1);
+    const t      = scaled - idx;
+    const c1 = hexToRgb(colors[idx]);
+    const c2 = hexToRgb(colors[idx + 1]);
+    const r  = Math.round(c1.r + (c2.r - c1.r) * t);
+    const g  = Math.round(c1.g + (c2.g - c1.g) * t);
+    const b  = Math.round(c1.b + (c2.b - c1.b) * t);
+    return `rgb(${r},${g},${b})`;
+  }
 
-    // MQ-2 Gas
-    document.getElementById('valGas').textContent = gas;
-    document.getElementById('barGas').style.width = Math.min((gas / 4095) * 100, 100) + '%';
+  function hexToRgb(hex) {
+    const n = parseInt(hex.replace('#',''), 16);
+    return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+  }
 
-    // LDR Light — raw value + label
-    document.getElementById('valLight').textContent = light;
-    let lightLabel = '';
-    if      (light <= 1000) lightLabel = '☀️ Bright';
-    else if (light <= 2500) lightLabel = '🌤️ Dim';
-    else                    lightLabel = '🌑 Dark';
-    document.getElementById('valLightLabel').textContent = lightLabel;
-    document.getElementById('barLight').style.width = Math.min((light / 4095) * 100, 100) + '%';
+  const GAS_COLORS   = ['#22c55e','#eab308','#f97316','#ef4444'];
+  const LIGHT_COLORS = ['#ffffff','#93c5fd','#3b82f6','#1e3a5f'];
+  const TEMP_COLORS  = ['#67e8f9','#86efac','#fbbf24','#f97316','#ef4444'];
+  const HUMID_COLORS = ['#fde68a','#6ee7b7','#38bdf8','#1d4ed8'];
 
-    // Temperature
-    document.getElementById('valTemp').innerHTML = `${parseFloat(temp).toFixed(1)}<span class="unit">°C</span>`;
-    document.getElementById('barTemp').style.width = Math.min((temp / 60) * 100, 100) + '%';
+  function setBar(id, pct, colors) {
+    const el = document.getElementById(id);
+    el.style.width      = Math.min(pct * 100, 100) + '%';
+    el.style.background = interpolateColor(colors, Math.min(pct, 1));
+  }
 
-    // Humidity
-    document.getElementById('valHumid').innerHTML = `${parseFloat(humid).toFixed(1)}<span class="unit">%</span>`;
-    document.getElementById('barHumid').style.width = Math.min(humid, 100) + '%';
+  // ── TELEMETRY UPDATE ──────────────────────────
+  // (replace your existing telemetry block with this)
+
+  const gas   = d.gas   ?? 0;
+  const light = d.light ?? 0;
+  const temp  = d.temp  ?? 0;
+  const humid = d.humid ?? 0;
+
+  // MQ-2
+  document.getElementById('valGas').textContent = gas;
+  setBar('barGas', gas / 4095, GAS_COLORS);
+
+  // LDR
+  document.getElementById('valLight').textContent = light;
+  let lightLabel = '';
+  if      (light <= 1000) lightLabel = '☀️ Bright';
+  else if (light <= 2500) lightLabel = '🌤️ Dim';
+  else                    lightLabel = '🌑 Dark';
+  document.getElementById('valLightLabel').textContent = lightLabel;
+  setBar('barLight', light / 4095, LIGHT_COLORS);
+
+  // Temperature
+  document.getElementById('valTemp').innerHTML = `${parseFloat(temp).toFixed(1)}<span class="unit">°C</span>`;
+  setBar('barTemp', temp / 60, TEMP_COLORS);
+
+  // Humidity
+  document.getElementById('valHumid').innerHTML = `${parseFloat(humid).toFixed(1)}<span class="unit">%</span>`;
+  setBar('barHumid', humid / 100, HUMID_COLORS);
   });
 
   // ── CONFIG LISTENER ───────────────────────────
@@ -542,10 +565,11 @@
 
   // ── AUTOMATION LOG LISTENER ───────────────────
   onValue(ref(db, `${basePath}/log`), snap => {
-    const text = snap.val();
+    const data = snap.val();
+    if (!data) return;
+    const text = typeof data === 'object' ? data.text : data;
     if (text) log(text, 'accent');
   });
-
   // ── APPLY CONFIG ──────────────────────────────
   function applyConfig(data) {
     const deviceCount = data.deviceCount || 0;
